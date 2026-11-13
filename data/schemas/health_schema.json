@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HealthCheckSchema",
+  "type": "object",
+  "required": ["status", "timestamp", "service", "environment", "version"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["UP", "DOWN", "DEGRADED"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "uptime": {
+      "type": "number",
+      "minimum": 0
+    },
+    "environment": {
+      "type": "string"
+    },
+    "service": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+.*$"
+    }
+  },
+  "additionalProperties": true
+}

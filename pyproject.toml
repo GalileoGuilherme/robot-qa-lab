@@ -1,0 +1,38 @@
+[project]
+name = "robot-qa-lab"
+version = "1.0.0"
+description = "State-of-the-art Full-Stack Automation & Quality Engineering Lab powered by Robot Framework, Playwright, Requests, and Appium"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Galileo Guilherme", email = "galileo.qa@example.com" }
+]
+keywords = [
+    "robot-framework",
+    "qa-automation",
+    "playwright",
+    "appium",
+    "api-testing",
+    "performance-testing",
+    "sdet",
+    "continuous-testing"
+]
+dependencies = [
+    "robotframework>=7.2.0",
+    "robotframework-requests>=0.9.7",
+    "robotframework-browser>=21.0.0",
+    "robotframework-appiumlibrary>=3.2.0",
+    "robotframework-seleniumlibrary>=6.9.0",
+    "robotframework-metrics>=3.7.0",
+    "jsonschema>=4.20.0",
+    "requests>=2.31.0",
+    "pydantic>=2.7.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.robotframework-lsp]
+robot.python.executable = ".venv/Scripts/python.exe"
+robot.lint.robocop.enabled = true

@@ -1,0 +1,20 @@
+{
+  "valid_contact": {
+    "name": "Galileo Guilherme",
+    "email": "galileo.qa@example.com",
+    "subject": "Oportunidade QA Senior / SDET",
+    "message": "Olá Galileo, gostamos muito do seu portfólio de automação e gostaríamos de conversar."
+  },
+  "invalid_contact_missing_fields": {
+    "name": "",
+    "email": "invalido",
+    "subject": "",
+    "message": ""
+  },
+  "security_payload_xss": {
+    "name": "<script>alert('xss')</script>",
+    "email": "attacker@evil.com",
+    "subject": "Security Test <svg onload=alert(1)>",
+    "message": "Testing input sanitization on contact form."
+  }
+}

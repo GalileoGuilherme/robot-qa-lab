@@ -1,0 +1,76 @@
+name: Robot Framework Full-Stack QA Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      test_layer:
+        description: 'Test Engineering Layer to Execute'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - api
+          - web
+          - mobile
+          - performance
+          - smoke
+
+jobs:
+  qa-automation-pipeline:
+    name: Run ${{ matrix.layer }} Tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        layer: [ api, web, mobile, performance ]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Setup Node.js 20 (For Playwright Engine)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Initialize Robot Framework Browser (Playwright)
+        if: matrix.layer == 'web' || matrix.layer == 'mobile' || matrix.layer == 'performance' || matrix.layer == 'all'
+        run: |
+          rfbrowser init
+
+      - name: Run ${{ matrix.layer }} Test Suite
+        env:
+          TEST_ENV: production
+          HEADLESS: true
+          BROWSER: chromium
+        run: |
+          python scripts/run_all.py --layer ${{ matrix.layer }} --metrics --outputdir results-${{ matrix.layer }}
+
+      - name: Upload Test Results Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-results-${{ matrix.layer }}
+          path: |
+            results-${{ matrix.layer }}/log.html
+            results-${{ matrix.layer }}/report.html
+            results-${{ matrix.layer }}/metrics.html
+            results-${{ matrix.layer }}/output.xml
+          retention-days: 14

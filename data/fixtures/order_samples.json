@@ -1,0 +1,50 @@
+{
+  "valid_order_payload": {
+    "customerName": "Galileo Guilherme",
+    "customerEmail": "galileo.qa@example.com",
+    "address": "Rua dos Testes, 42 - Recife, PE",
+    "shippingMethod": "Padrão grátis",
+    "shippingPrice": 0,
+    "discount": 0,
+    "coupon": "",
+    "items": [
+      {
+        "id": "fone-bluetooth",
+        "productId": "fone-bluetooth",
+        "name": "Fone Bluetooth",
+        "price": 199.9,
+        "quantity": 1,
+        "subtotal": 199.9
+      }
+    ]
+  },
+  "valid_order_with_coupon": {
+    "customerName": "Galileo Guilherme",
+    "customerEmail": "galileo.qa@example.com",
+    "address": "Rua dos Testes, 42 - Recife, PE",
+    "shippingMethod": "Expressa",
+    "shippingPrice": 15.0,
+    "discount": 29.99,
+    "coupon": "DESC10",
+    "items": [
+      {
+        "id": "teclado-mecanico",
+        "productId": "teclado-mecanico",
+        "name": "Teclado Mecânico",
+        "price": 299.9,
+        "quantity": 1,
+        "subtotal": 299.9
+      }
+    ]
+  },
+  "coupons": {
+    "valid": [
+      { "code": "DESC10", "discount_percent": 10 },
+      { "code": "BLACKFRIDAY", "discount_percent": 20 }
+    ],
+    "invalid": [
+      { "code": "INVALIDO99", "expected_status": "error" },
+      { "code": "EXPIRADO2020", "expected_status": "error" }
+    ]
+  }
+}

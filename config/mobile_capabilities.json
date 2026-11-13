@@ -1,0 +1,50 @@
+{
+  "appium_server_url": "http://127.0.0.1:4723",
+  "devices": {
+    "android_emulator": {
+      "platformName": "Android",
+      "automationName": "UiAutomator2",
+      "deviceName": "Android Emulator",
+      "platformVersion": "14.0",
+      "appPackage": "com.swaglabsmobileapp",
+      "appActivity": "com.swaglabsmobileapp.MainActivity",
+      "app": "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk",
+      "newCommandTimeout": 300,
+      "autoGrantPermissions": true,
+      "noReset": false
+    },
+    "ios_simulator": {
+      "platformName": "iOS",
+      "automationName": "XCUITest",
+      "deviceName": "iPhone 15 Pro",
+      "platformVersion": "17.2",
+      "bundleId": "com.saucelabs.SwagLabsMobileApp",
+      "app": "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip",
+      "newCommandTimeout": 300,
+      "noReset": false
+    },
+    "mobile_browser_android": {
+      "platformName": "Android",
+      "automationName": "UiAutomator2",
+      "deviceName": "Pixel_7_Pro",
+      "browserName": "Chrome",
+      "newCommandTimeout": 300
+    }
+  },
+  "cloud_providers": {
+    "saucelabs": {
+      "remote_url": "https://ondemand.us-west-1.saucelabs.com/wd/hub",
+      "sauce:options": {
+        "build": "robot-qa-lab-build-1",
+        "name": "Mobile SwagLabs QA Suite"
+      }
+    },
+    "browserstack": {
+      "remote_url": "https://hub-cloud.browserstack.com/wd/hub",
+      "bstack:options": {
+        "projectName": "Robot Framework QA Lab",
+        "buildName": "Mobile Suite 1.0"
+      }
+    }
+  }
+}

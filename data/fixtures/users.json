@@ -1,0 +1,36 @@
+{
+  "valid_users": [
+    {
+      "name": "Galileo Guilherme",
+      "email": "galileo.qa@example.com",
+      "address": "Av. Boa Viagem, 1000 - Recife, PE",
+      "shipping_method": "padrao"
+    },
+    {
+      "name": "Maria Silva SDET",
+      "email": "maria.sdet@example.org",
+      "address": "Rua Augusta, 500 - São Paulo, SP",
+      "shipping_method": "expressa"
+    }
+  ],
+  "invalid_users": [
+    {
+      "name": "",
+      "email": "invalid-email",
+      "address": "",
+      "expected_error": "Campos obrigatórios ausentes"
+    }
+  ],
+  "mobile_test_users": [
+    {
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "description": "Standard SwagLabs user"
+    },
+    {
+      "username": "locked_out_user",
+      "password": "secret_sauce",
+      "description": "Locked SwagLabs user"
+    }
+  ]
+}

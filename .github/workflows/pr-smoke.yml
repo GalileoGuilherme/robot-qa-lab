@@ -1,0 +1,44 @@
+name: Fast PR Smoke Validation
+
+on:
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  smoke-tests:
+    name: Fast Smoke Suite (@smoke)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          rfbrowser init
+
+      - name: Execute Smoke Tests
+        env:
+          TEST_ENV: production
+          HEADLESS: true
+        run: |
+          python scripts/run_all.py --layer smoke --metrics --outputdir results-smoke
+
+      - name: Upload Smoke Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-results
+          path: results-smoke/

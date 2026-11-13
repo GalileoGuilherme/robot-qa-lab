@@ -1,0 +1,13 @@
+{
+  "robot.language-server.python": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "robot.python.executable": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "robot.variables": {
+    "ENV": "production",
+    "HEADLESS": "true",
+    "BROWSER": "chromium"
+  },
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true
+}

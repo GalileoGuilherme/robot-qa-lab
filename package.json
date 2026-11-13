@@ -1,0 +1,28 @@
+{
+  "name": "robot-qa-lab",
+  "version": "1.0.0",
+  "description": "Enterprise Full-Stack QA Automation Suite powered by Robot Framework (Web, API, Mobile, Performance SLA)",
+  "scripts": {
+    "test": "python scripts/run_all.py --layer all",
+    "test:api": "python scripts/run_all.py --layer api",
+    "test:web": "python scripts/run_all.py --layer web",
+    "test:mobile": "python scripts/run_all.py --layer mobile",
+    "test:perf": "python scripts/run_all.py --layer performance",
+    "test:smoke": "python scripts/run_all.py --layer smoke",
+    "test:headed": "python scripts/run_all.py --layer web --headed",
+    "report:metrics": "python scripts/generate_metrics.py",
+    "check-env": "python scripts/check_env.py",
+    "setup": "python -m pip install -r requirements.txt && rfbrowser init"
+  },
+  "keywords": [
+    "robot-framework",
+    "qa-automation",
+    "playwright",
+    "appium",
+    "api-testing",
+    "performance-telemetry",
+    "sdet"
+  ],
+  "author": "Galileo Guilherme",
+  "license": "MIT"
+}

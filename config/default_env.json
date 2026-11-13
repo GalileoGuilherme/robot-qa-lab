@@ -1,0 +1,39 @@
+{
+  "environments": {
+    "production": {
+      "base_url": "https://portfolio-omega-six-18.vercel.app",
+      "api_base_url": "https://portfolio-omega-six-18.vercel.app/api",
+      "timeout": 15000,
+      "api_timeout": 10
+    },
+    "staging": {
+      "base_url": "https://staging-portfolio-omega-six-18.vercel.app",
+      "api_base_url": "https://staging-portfolio-omega-six-18.vercel.app/api",
+      "timeout": 15000,
+      "api_timeout": 10
+    },
+    "local": {
+      "base_url": "http://localhost:3000",
+      "api_base_url": "http://localhost:3000/api",
+      "timeout": 10000,
+      "api_timeout": 5
+    }
+  },
+  "browser": {
+    "default_browser": "chromium",
+    "headless": true,
+    "slow_mo": "0ms",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "performance_sla": {
+    "api_max_response_time_ms": 1200,
+    "api_p95_response_time_ms": 900,
+    "web_max_ttfb_ms": 800,
+    "web_max_dom_interactive_ms": 2500,
+    "web_max_load_event_ms": 4000,
+    "max_payload_kb": 100
+  }
+}
