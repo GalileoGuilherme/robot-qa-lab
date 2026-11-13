@@ -38,6 +38,8 @@ for (const arg of rawArgs) {
     scriptToRun = path.join(__dirname, 'generate_metrics.py');
   } else if (arg === '--check-env-only') {
     scriptToRun = path.join(__dirname, 'check_env.py');
+  } else if (arg === '--ai-only') {
+    scriptToRun = path.join(__dirname, 'ai_qa_observer.py');
   } else {
     filteredArgs.push(arg);
   }

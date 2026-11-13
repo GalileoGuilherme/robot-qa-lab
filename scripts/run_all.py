@@ -1,6 +1,6 @@
 """
 Unified Test Runner CLI for Robot QA Lab.
-Orchestrates test suites across API, Web E2E, Mobile, and Performance layers.
+Orchestrates test suites across API, Web E2E, Mobile (Android/iOS), Performance, and AI Observability layers.
 """
 
 import argparse
@@ -23,7 +23,7 @@ def run_tests():
     parser.add_argument(
         "--layer",
         "-l",
-        choices=["all", "api", "web", "mobile", "performance", "smoke"],
+        choices=["all", "api", "web", "mobile", "ios", "performance", "smoke"],
         default="all",
         help="Test engineering layer to execute (default: all)",
     )
@@ -32,7 +32,7 @@ def run_tests():
         "-t",
         type=str,
         default=None,
-        help="Robot Framework tags filter expression (e.g. 'smoke', 'contractORp95')",
+        help="Robot Framework tags filter expression (e.g. 'smoke', 'contractORp95', 'ios')",
     )
     parser.add_argument(
         "--browser",
@@ -68,6 +68,18 @@ def run_tests():
         help="Generate robotframework-metrics HTML dashboard upon test completion (default: True)",
     )
     parser.add_argument(
+        "--ai",
+        action="store_true",
+        default=True,
+        help="Trigger AI Quality Observer and generate executive email report (default: True)",
+    )
+    parser.add_argument(
+        "--email",
+        action="store_true",
+        default=False,
+        help="Attempt live SMTP email dispatch to galileoguilhermeqa@gmail.com",
+    )
+    parser.add_argument(
         "--outputdir",
         "-o",
         type=str,
@@ -93,6 +105,8 @@ def run_tests():
         target_path = str(ROOT_DIR / "tests" / "web")
     elif args.layer == "mobile":
         target_path = str(ROOT_DIR / "tests" / "mobile")
+    elif args.layer == "ios":
+        target_path = str(ROOT_DIR / "tests" / "mobile" / "test_mobile_ios.robot")
     elif args.layer == "performance":
         target_path = str(ROOT_DIR / "tests" / "performance")
     elif args.layer == "smoke":
@@ -148,6 +162,15 @@ def run_tests():
             print(f" Executive Dashboard: file:///{results_dir / 'metrics.html'}")
         except Exception as e:
             print(f"Warning: Could not generate metrics dashboard: {e}")
+
+    if args.ai and (results_dir / "output.xml").exists():
+        print("-" * 80)
+        try:
+            from scripts.ai_qa_observer import run_observer
+            run_observer(send_email=args.email)
+            print(f" AI Executive Report: file:///{results_dir / 'executive_email_report.html'}")
+        except Exception as e:
+            print(f"Warning: Could not run AI Quality Observer: {e}")
 
     print("=" * 80 + "\n")
     sys.exit(result.returncode)

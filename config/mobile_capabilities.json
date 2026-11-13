@@ -21,6 +21,7 @@
       "bundleId": "com.saucelabs.SwagLabsMobileApp",
       "app": "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip",
       "newCommandTimeout": 300,
+      "autoAcceptAlerts": true,
       "noReset": false
     },
     "mobile_browser_android": {
@@ -29,21 +30,28 @@
       "deviceName": "Pixel_7_Pro",
       "browserName": "Chrome",
       "newCommandTimeout": 300
+    },
+    "mobile_browser_ios": {
+      "platformName": "iOS",
+      "automationName": "XCUITest",
+      "deviceName": "iPhone 15 Pro",
+      "browserName": "Safari",
+      "newCommandTimeout": 300
     }
   },
   "cloud_providers": {
     "saucelabs": {
       "remote_url": "https://ondemand.us-west-1.saucelabs.com/wd/hub",
       "sauce:options": {
-        "build": "robot-qa-lab-build-1",
-        "name": "Mobile SwagLabs QA Suite"
+        "build": "robot-qa-lab-build-ios-1",
+        "name": "iOS SwagLabs QA Suite"
       }
     },
     "browserstack": {
       "remote_url": "https://hub-cloud.browserstack.com/wd/hub",
       "bstack:options": {
         "projectName": "Robot Framework QA Lab",
-        "buildName": "Mobile Suite 1.0"
+        "buildName": "iOS Suite 1.0"
       }
     }
   }

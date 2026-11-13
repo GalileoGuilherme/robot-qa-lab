@@ -1,15 +1,18 @@
 {
   "name": "robot-qa-lab",
   "version": "1.0.0",
-  "description": "Enterprise Full-Stack QA Automation Suite powered by Robot Framework (Web, API, Mobile, Performance SLA)",
+  "description": "Enterprise Full-Stack QA Automation Suite powered by Robot Framework (Web, API, Mobile, Performance SLA, AI)",
   "scripts": {
     "test": "node scripts/run.js --layer all",
     "test:api": "node scripts/run.js --layer api",
     "test:web": "node scripts/run.js --layer web",
     "test:mobile": "node scripts/run.js --layer mobile",
+    "test:ios": "node scripts/run.js --layer ios",
     "test:perf": "node scripts/run.js --layer performance",
     "test:smoke": "node scripts/run.js --layer smoke",
     "test:headed": "node scripts/run.js --layer web --headed",
+    "ai:report": "node scripts/run.js --ai-only",
+    "send:email": "node scripts/run.js --ai-only",
     "report:metrics": "node scripts/run.js --metrics-only",
     "check-env": "node scripts/run.js --check-env-only",
     "setup": "python -m pip install -r requirements.txt && rfbrowser init"
@@ -19,6 +22,8 @@
     "qa-automation",
     "playwright",
     "appium",
+    "ios-testing",
+    "gemini-ai",
     "api-testing",
     "performance-telemetry",
     "sdet"
